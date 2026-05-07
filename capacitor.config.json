@@ -1,5 +1,5 @@
 {
-  "appId": "com.hadivkl.accounting",
-  "appName": "Accounting App",
+  "appId": "ir.simorgh.ledger",
+  "appName": "Simorgh Ledger",
   "webDir": "dist"
 }
