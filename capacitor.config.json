@@ -1,8 +1,8 @@
 import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  "appId": "com.simorgh.ledger",
-  "appName": "Simorgh Ledger",
+  "appId": "com.hadivkl.accounting",
+  "appName": "Accounting App",
   "webDir": "dist"
 };
 
