@@ -1,0 +1,518 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #e8eef2;
+  direction: rtl;
+  padding: 12px;
+}
+
+.app {
+  max-width: 500px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+/* هدر */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+}
+
+.header h1 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1a1a2e;
+}
+
+.menu-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  font-weight: bold;
+  color: #666;
+  cursor: pointer;
+  padding: 0 8px;
+}
+
+/* ناوبری ماه */
+.month-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: #fff;
+}
+
+.month-nav button {
+  background: #f0f0f0;
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-size: 16px;
+  cursor: pointer;
+  color: #333;
+}
+
+.month-year {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1a1a2e;
+  background: #f5f5f5;
+  padding: 6px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+/* روزهای هفته */
+.weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  padding: 8px 8px 4px;
+  background: #fff;
+}
+
+.weekday {
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: #888;
+  padding: 6px 0;
+}
+
+/* تقویم */
+.calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  padding: 0 8px;
+  background: #fff;
+}
+
+.day {
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 2px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin: 2px;
+  background: #fff;
+}
+
+.day.empty {
+  background: transparent;
+  cursor: default;
+}
+
+.day:hover {
+  background: #f0f0f0;
+  transform: scale(1.02);
+}
+
+.day.has-debt {
+  background: #fff8e7;
+}
+
+.day.today {
+  background: #e8f0fe;
+  border: 1px solid #4a90e2;
+}
+
+.day-num {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+}
+
+.debt-badge {
+  font-size: 9px;
+  color: #e67e22;
+  background: #fff0e0;
+  padding: 2px 6px;
+  border-radius: 12px;
+  margin-top: 4px;
+  font-weight: 600;
+}
+
+/* مجموع ماه */
+.month-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 12px 16px;
+  padding: 12px 16px;
+  background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+  border-radius: 16px;
+}
+
+.month-total span {
+  font-size: 13px;
+  color: #666;
+}
+
+.month-total strong {
+  font-size: 18px;
+  color: #e67e22;
+  font-weight: 700;
+}
+
+/* مودال */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-box {
+  background: white;
+  width: 90%;
+  max-width: 400px;
+  border-radius: 20px;
+  padding: 20px;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.day-modal {
+  max-width: 450px;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.modal-header h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+.close-modal {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #999;
+}
+
+.day-debt-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  background: #fff8e7;
+  border-radius: 12px;
+  margin-bottom: 16px;
+}
+
+.day-debt-summary span {
+  font-size: 13px;
+  color: #666;
+}
+
+.day-debt-summary strong {
+  font-size: 16px;
+  color: #e67e22;
+  font-weight: 700;
+}
+
+.modal-buttons-row {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.add-trans-btn {
+  flex: 2;
+  background: #4a90e2;
+  border: none;
+  padding: 10px;
+  border-radius: 12px;
+  color: white;
+  font-size: 13px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.prayer-btn-modal {
+  flex: 1;
+  background: #9b59b6;
+  border: none;
+  padding: 10px;
+  border-radius: 12px;
+  color: white;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.transactions-list-modal {
+  max-height: 350px;
+  overflow-y: auto;
+}
+
+.empty-trans {
+  text-align: center;
+  color: #999;
+  padding: 30px;
+  font-size: 13px;
+}
+
+.trans-item-modal {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  margin-bottom: 8px;
+  background: #f8f9fa;
+  border-radius: 12px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.trans-item-modal.paid {
+  opacity: 0.6;
+  background: #e8f5e9;
+}
+
+.trans-info-modal {
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+
+.trans-title-modal {
+  font-size: 13px;
+  font-weight: 500;
+  color: #333;
+}
+
+.trans-amount-modal {
+  font-size: 12px;
+  color: #e67e22;
+  font-weight: 600;
+}
+
+.trans-actions-modal {
+  display: flex;
+  gap: 10px;
+}
+
+.pay-tick-modal {
+  background: #ff9800;
+  border: none;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  cursor: pointer;
+  color: white;
+}
+
+.delete-trans-modal {
+  background: #e74c3c;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 20px;
+  cursor: pointer;
+  color: white;
+  font-size: 12px;
+}
+
+/* مودال اوقات شرعی */
+.prayer-box {
+  text-align: center;
+}
+
+.prayer-list {
+  margin: 16px 0;
+}
+
+.prayer-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.prayer-row span {
+  font-size: 14px;
+  color: #666;
+}
+
+.prayer-row strong {
+  font-size: 16px;
+  color: #9b59b6;
+  font-family: monospace;
+}
+
+.close-prayer {
+  width: 100%;
+  padding: 10px;
+  background: #9b59b6;
+  border: none;
+  border-radius: 12px;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  margin-top: 12px;
+}
+
+/* فرم افزودن */
+.modal-box input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+
+.modal-btns {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.modal-btns button {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 12px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.submit {
+  background: #4a90e2;
+  color: white;
+}
+
+.cancel {
+  background: #eee;
+  color: #666;
+}
+/* استایل انتخابگر سال و ماه */
+.month-year-selector {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #f5f5f5;
+  padding: 6px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+  color: #1a1a2e;
+}
+
+.month-year-selector .year-text {
+  color: #4a90e2;
+}
+
+.month-year-selector .dropdown-icon {
+  font-size: 10px;
+  color: #999;
+}
+
+.select-modal {
+  text-align: center;
+}
+
+.select-row {
+  display: flex;
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.select-row select {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  font-size: 14px;
+  background: white;
+  font-family: inherit;
+  text-align: center;
+}
+/* هدر با دکمه امروز */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+  position: relative;
+}
+
+.header-left {
+  width: 70px;
+}
+
+.today-btn {
+  background: linear-gradient(135deg, #4a90e2, #357abd);
+  border: none;
+  padding: 6px 12px;
+  border-radius: 20px;
+  color: white;
+  font-size: 11px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.2s;
+}
+
+.today-btn:hover {
+  transform: scale(1.02);
+  background: linear-gradient(135deg, #357abd, #2a6da8);
+}
+
+.header h1 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1a1a2e;
+  margin: 0;
+  text-align: center;
+}
+
+.menu-btn {
+  background: none;
+  border: none;
+  font-size: 22px;
+  font-weight: bold;
+  color: #666;
+  cursor: pointer;
+  padding: 0;
+  width: 40px;
+  text-align: left;
+}
