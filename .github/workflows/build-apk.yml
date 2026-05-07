@@ -35,12 +35,11 @@ jobs:
     - name: Install Capacitor
       run: |
         npm install @capacitor/cli @capacitor/android
-        npx cap init MyApp com.example.myapp
+        rm -rf android
+        npx cap init
         npx cap add android
+        npx cap sync android
         
-    - name: Sync Capacitor
-      run: npx cap sync android
-      
     - name: Build APK
       run: |
         cd android
