@@ -1,9 +1,5 @@
-import type { CapacitorConfig } from '@capacitor/cli';
-
-const config: CapacitorConfig = {
+{
   "appId": "com.hadivkl.accounting",
   "appName": "Accounting App",
   "webDir": "dist"
-};
-
-export default config;
+}
