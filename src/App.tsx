@@ -183,7 +183,6 @@ function App() {
   };
 
   const renderDays = () => {
-    // ✅ اصلاح شد: به جای JSX.Element[] از ReactNode[] استفاده می‌کنیم
     const days: React.ReactNode[] = [];
     const daysInMonth = getMonthDays(currentYear, currentMonth);
     const firstDay = moment(`${currentYear}/${currentMonth + 1}/1`, 'jYYYY/jM/jD').day();
@@ -203,7 +202,7 @@ function App() {
         <div
           key={d}
           className={`day ${debt > 0 ? 'has-debt' : ''} ${isToday ? 'today' : ''}`}
-          onDoubleClick={() => openDayDetails(currentYear, currentMonth, d)}
+          onClick={() => openDayDetails(currentYear, currentMonth, d)}  // ✅ تغییر: دوبار کلیک → تک کلیک
         >
           <span className="day-num">{d}</span>
           {debt > 0 && (
@@ -264,6 +263,25 @@ function App() {
         <span>💰 مجموع بدهی این ماه</span>
         <strong>{getMonthTotal().toLocaleString()} تومان</strong>
       </div>
+
+      {/* ==================== فوتر جدید ==================== */}
+      <footer className="app-footer">
+        <div className="footer-content">
+          <div className="footer-text-fa">
+            ساخته شده توسط <strong>سیمرغ فناوری هوشمند ایرانیان</strong>
+          </div>
+          <div className="footer-text-en">
+            Made by <strong>Simorgh Intelligent Iranian Technology</strong>
+          </div>
+          <div className="footer-copyright">
+            © 2026 Simorgh AI | 
+            <a href="https://www.simorghai.com" target="_blank" rel="noopener noreferrer">
+              www.simorghai.com
+            </a>
+          </div>
+        </div>
+      </footer>
+      {/* ==================== پایان فوتر ==================== */}
 
       {/* مودال انتخاب سال و ماه */}
       {showYearMonthModal && (
