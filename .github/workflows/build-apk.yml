@@ -36,7 +36,7 @@ jobs:
       run: |
         npm install @capacitor/cli @capacitor/android
         rm -rf android
-        npx cap init
+        npx cap init "Accounting App" "com.hadivkl.accounting" --web-dir=dist
         npx cap add android
         npx cap sync android
         
