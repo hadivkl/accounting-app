@@ -15,7 +15,7 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: '22'
+        node-version: '20'  # تغییر از 22 به 20 برای پایداری بیشتر
     
     - name: Install dependencies
       run: npm ci
@@ -27,24 +27,30 @@ jobs:
       uses: actions/setup-java@v4
       with:
         distribution: 'zulu'
-        java-version: '21'
+        java-version: '17'  # تغییر از 21 به 17 (نسخه پایدارتر برای اندروید)
         
     - name: Setup Android SDK
       uses: android-actions/setup-android@v3
       
-    - name: Install Capacitor
+    - name: Install Capacitor and Dependencies
       run: |
         npm install @capacitor/cli @capacitor/android
+        npm install @capacitor/local-notifications  # اضافه کردن نوتیفیکیشن
+        
+    - name: Initialize Capacitor
+      run: |
         rm -rf android
-        npx cap init "Accounting App" "com.hadivkl.accounting" --web-dir=dist
+        npx cap init "Simorgh Ledger" "ir.simorgh.ledger" --web-dir=dist  # تغییر نام به یکسان با capacitor.config.json
         npx cap add android
-        npx cap sync android
+        
+    - name: Sync Capacitor
+      run: npx cap sync android
         
     - name: Build APK
       run: |
         cd android
         chmod +x gradlew
-        ./gradlew assembleDebug
+        ./gradlew assembleDebug --no-daemon  # اضافه کردن --no-daemon برای جلوگیری از خطا
         
     - name: Upload APK
       uses: actions/upload-artifact@v4
