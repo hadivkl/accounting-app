@@ -15,7 +15,7 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: '22'  # ✅ برگشت به نسخه 22 چون Capacitor به آن نیاز دارد
+        node-version: '22'
     
     - name: Remove old lock file
       run: rm -f package-lock.json
@@ -35,7 +35,7 @@ jobs:
       uses: actions/setup-java@v4
       with:
         distribution: 'zulu'
-        java-version: '17'
+        java-version: '21'  # ✅ تغییر از 17 به 21
         
     - name: Setup Android SDK
       uses: android-actions/setup-android@v3
