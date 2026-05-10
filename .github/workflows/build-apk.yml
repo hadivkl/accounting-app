@@ -15,7 +15,7 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: '20'
+        node-version: '22'  # ✅ برگشت به نسخه 22 چون Capacitor به آن نیاز دارد
     
     - name: Remove old lock file
       run: rm -f package-lock.json
