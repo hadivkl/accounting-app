@@ -1,5 +1,12 @@
 {
   "appId": "ir.simorgh.ledger",
   "appName": "Simorgh Ledger",
-  "webDir": "dist"
+  "webDir": "dist",
+  "plugins": {
+    "LocalNotifications": {
+      "smallIcon": "ic_stat_icon_config_sample",
+      "iconColor": "#4a90e2",
+      "sound": "beep.wav"
+    }
+  }
 }
