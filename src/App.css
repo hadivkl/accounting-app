@@ -557,3 +557,77 @@ body {
 .footer-copyright a:hover {
   text-decoration: underline;
 }
+
+/* سه کارت آماری */
+.stats-container {
+  display: flex;
+  gap: 12px;
+  padding: 16px;
+  background: #fff;
+  border-top: 1px solid #eee;
+  margin-top: 8px;
+}
+
+.stat-card {
+  flex: 1;
+  background: #f8f9fa;
+  border-radius: 16px;
+  padding: 12px 8px;
+  text-align: center;
+  transition: all 0.2s;
+}
+
+.stat-card.remaining {
+  background: linear-gradient(135deg, #fff8e7, #fff0e0);
+  border-right: 3px solid #e67e22;
+}
+
+.stat-card.paid {
+  background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+  border-right: 3px solid #4caf50;
+}
+
+.stat-card.total {
+  background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+  border-right: 3px solid #2196f3;
+}
+
+.stat-label {
+  display: block;
+  font-size: 11px;
+  color: #666;
+  margin-bottom: 6px;
+}
+
+.stat-value {
+  display: block;
+  font-size: 16px;
+  font-weight: 800;
+  color: #333;
+  direction: ltr;
+  unicode-bidi: embed;
+}
+
+.stat-card.remaining .stat-value {
+  color: #e67e22;
+}
+
+.stat-card.paid .stat-value {
+  color: #4caf50;
+}
+
+.stat-card.total .stat-value {
+  color: #2196f3;
+}
+
+.stat-unit {
+  font-size: 9px;
+  color: #999;
+  margin-right: 2px;
+}
+
+/* نشانگر یادآوری */
+.reminder-badge {
+  font-size: 12px;
+  margin-right: 5px;
+}
